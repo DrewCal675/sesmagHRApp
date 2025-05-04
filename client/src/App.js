@@ -1,17 +1,18 @@
-import React from 'react';
-import Profile from './components/Profile';
+// src/App.js
+import React, { useState } from 'react';
 import Login from './components/Login';
+import Profile from './components/Profile';
 import Dashboard from './components/Dashboard';
 
 function App() {
-  // mock logic
-  const isLoggedIn = true;
-  const isManager = false;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isManager, setIsManager] = useState(false);
 
   const mockUser = {
-    name: "Jane Doe",
-    email: "jane@example.com",
-    public_profile: "Experienced frontend developer...",
+    name: 'Jane Doe',
+    email: 'jane@example.com',
+    public_profile: 'Experienced frontend developer...',
+    private_profile: 'Working on React HR app...'
   };
 
   const mockUsers = [mockUser];
@@ -21,10 +22,10 @@ function App() {
       {isLoggedIn ? (
         isManager ? <Dashboard users={mockUsers} /> : <Profile user={mockUser} />
       ) : (
-        <Login />
+        <Login setIsLoggedIn={setIsLoggedIn} />
       )}
     </div>
   );
 }
 
-export default App;
+export default App; // ✅ This line is required!

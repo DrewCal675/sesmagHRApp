@@ -14,7 +14,7 @@ export default function Dashboard({ users }) {
         </thead>
         <tbody>
           {users.map((u) => (
-            <tr key={u.id}>
+            <tr key={u.email}>
               <td className="border p-2">{u.name}</td>
               <td className="border p-2">{u.email}</td>
               <td className="border p-2">2 days ago</td>
