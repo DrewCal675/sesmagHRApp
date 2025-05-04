@@ -1,3 +1,4 @@
+//routes/users.js
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
@@ -12,16 +13,22 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.put('/:id', auth, async (req, res, next) => {
+router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { field, newValue } = req.body;
 
+  if (!['public_profile', 'private_profile'].includes(field)) {
+    return res.status(400).send('Invalid field');
+  }
+
   try {
-    await updateUserField(id, field, newValue);
-    res.send('Profile updated and change logged.');
+    await pool.query(`UPDATE users SET ${field} = $1 WHERE id = $2`, [newValue, id]);
+    res.send('Update successful');
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).send('Update failed');
   }
 });
+
 
 module.exports = router;

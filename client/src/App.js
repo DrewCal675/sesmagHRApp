@@ -9,6 +9,7 @@ function App() {
   const [isManager, setIsManager] = useState(false);
 
   const mockUser = {
+    id: 1, // ✅ Add this line
     name: 'Jane Doe',
     email: 'jane@example.com',
     public_profile: 'Experienced frontend developer...',

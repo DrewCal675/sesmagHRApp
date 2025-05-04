@@ -7,12 +7,12 @@ export default function Profile({ user }) {
 
   const handleSave = async () => {
     try {
-      await axios.put(`http://localhost:3000/users/${user.id}`, {
+      await axios.put(`http://localhost:3000/users/${user}`, {
         field: 'public_profile',
         newValue: publicProfile,
       });
 
-      await axios.put(`http://localhost:3000/users/${user.id}`, {
+      await axios.put(`http://localhost:3000/users/${user}`, {
         field: 'private_profile',
         newValue: privateProfile,
       });
